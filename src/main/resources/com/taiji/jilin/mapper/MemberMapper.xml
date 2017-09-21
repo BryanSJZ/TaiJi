@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taiji.jilin.mapper.MemberMapper">
+
+    <insert id="newMember">
+        INSERT INTO `t_member`(`name`,`username`,`password`,`organization`,`is_manager`,`area`,`company`,`job_title`,
+        `id_number`,`telephone`,`qq`,`photo`,`grade`,`is_judge`,`judge_number`,`judge_date`,
+        `is_coach`,`coach_number`,`coach_date`,`is_instructor`,`instructor_number`,`instructor_date`,
+        `experience`,`activity`,`status`,`is_deleted`)
+        VALUES(#{name},#{username},#{password},#{organization},#{isManager},#{area},#{company},#{jobTitle},#{idNumber},
+        #{telephone},#{qq},#{photo},#{grade},#{isJudge},#{judgeNumber},#{judgeDate},#{isCoach},#{coachNumber},
+        #{coachDate},#{isInstructor},#{instructorNumber},#{instructorDate},#{experience},#{activity},#{status},
+        #{isDeleted})
+    </insert>
+
+    <select id="queryById" resultType="com.taiji.jilin.common.entity.Member">
+        SELECT *
+        FROM t_member
+        WHERE `id` = #{id}
+    </select>
+
+    <update id="delById">
+        UPDATE t_member
+        SET is_deleted = 1
+        WHERE id = #{id}
+    </update>
+
+    <update id="update">
+        UPDATE t_member
+        SET name = #{name},username = #{username},password = #{password},organization = #{organization},
+            is_manager = #{isManager},area = #{area},company = #{company},job_title = #{jobTitle},id_number = #{idNumber},
+            telephone = #{telephone},qq = #{qq},photo = #{photo},grade = #{grade},is_judge = #{isJudge},
+            judge_number = #{judgeNumber},judge_date = #{judgeDate},is_coach = #{isCoach},coach_number = #{coachNumber},coach_date = #{coachDate},
+            is_instructor = #{isInstructor},instructor_number = #{instructorNumber},instructor_date = #{instructorDate},experience = #{experience},
+            activity = #{activity},status = #{status},is_deleted = #{isDeleted}
+        WHERE id = #{id}
+    </update>
+
+    <select id="queryByUsnAndPsw" resultType="com.taiji.jilin.common.entity.Member">
+        SELECT *
+        FROM t_member
+        WHERE username = #{username}
+        AND password = #{password}
+    </select>
+
+    <select id="queryAll" resultMap="com.taiji.jilin.common.entity.Member">
+        SELECT *
+        FROM t_member
+    </select>
+</mapper>

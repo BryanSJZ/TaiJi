@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taiji.jilin.mapper.MemberMapper">
+
+    <insert id="newMember">
+        INSERT INTO `t_member`(`name`,`username`,`password`,`organization`,`is_manager`,`area`,`company`,`job_title`,
+        `id_number`,`telephone`,`qq`,`photo`,`grade`,`is_judge`,`judge_number`,`judge_date`,
+        `is_coach`,`coach_number`,`coach_date`,`is_instructor`,`instructor_number`,`instructor_date`,
+        `experience`,`activity`,`status`,`is_deleted`)
+        VALUES(#{name},#{username},#{password},#{organization},#{isManager},#{area},#{company},#{jobTitle},#{idNumber},
+        #{telephone},#{qq},#{photo},#{grade},#{isJudge},#{judgeNumber},#{judgeDate},#{isCoach},#{coachNumber},
+        #{coachDate},#{isInstructor},#{instructorNumber},#{instructorDate},#{experience},#{activity},#{status},
+        #{isDeleted})
+    </insert>
+
+    <select id="queryById" resultType="com.taiji.jilin.common.entity.Member">
+        SELECT *
+        FROM t_member
+        WHERE `id` = #{id}
+    </select>
+</mapper>
